@@ -1,5 +1,5 @@
 import { Button } from '$/components/ui/button';
-import { loginWithGoogle } from './google.login.action';
+import { loginWithGoogle } from '$/lib/auth/auth.actions';
 
 export const ContinueWithGoogle = () => (
   <form action={loginWithGoogle}>

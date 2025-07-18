@@ -7,4 +7,7 @@ export const paths = {
   home: {
     getHref: () => '/',
   },
+  profile: {
+    getHref: () => '/profile',
+  },
 };
