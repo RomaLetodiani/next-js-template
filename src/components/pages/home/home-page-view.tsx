@@ -1,11 +1,11 @@
-import { paths } from '$/config/paths';
-import Link from 'next/link';
+import { HomeFeed } from './components/feed/home-feed';
 
 export const HomePageView = () => {
   return (
-    <div>
-      <h1>Home</h1>
-      <Link href={paths.profile.getHref()}>Profile</Link>
+    <div className="grid h-screen grid-cols-[1fr_3fr_1fr]">
+      <div>sidebar</div>
+      <HomeFeed />
+      <div>side panel</div>
     </div>
   );
 };

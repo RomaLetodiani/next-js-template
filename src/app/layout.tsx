@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: PropsWithChildren) => (
   <html lang="en" suppressHydrationWarning>
-    <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <body className={`${geistSans.variable} ${geistMono.variable} overflow-y-auto antialiased`}>
       <Providers>{children}</Providers>
     </body>
   </html>
