@@ -9,8 +9,12 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
+    "prisma:push": "prisma db push",
+    "prisma:pull": "prisma db pull",
     "prisma:generate": "prisma generate --no-hints",
-    "prisma:seed": "prisma db seed"
+    "prisma:seed": "prisma db seed",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio"
   },
   "dependencies": {
     "@amcharts/amcharts5": "^5.13.3",
