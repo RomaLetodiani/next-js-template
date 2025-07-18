@@ -2,22 +2,18 @@
 
 import { Button } from '$/components/ui/button';
 import { Textarea } from '$/components/ui/textarea';
-import useTweetStore from '../stores/tweet-store';
+import { db } from '$/lib/instant-db/db';
+import { id } from '@instantdb/react';
 // TODO: use zustand to handle the form state
 
 export const Input = () => {
-  const addTweet = useTweetStore((state) => state.addTweet);
+  // transact! 🔥
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const content = formData.get('content') as string;
-    addTweet({
-      id: crypto.randomUUID(),
-      content,
-      createdAt: new Date().toISOString(),
-      author: { id: '1', name: 'John Doe', username: 'john_doe' },
-    });
+    db.transact(db.tx.tweets[id()].create({ content, authorId: '1' }));
   };
 
   return (
