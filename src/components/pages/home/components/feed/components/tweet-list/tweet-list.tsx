@@ -4,9 +4,13 @@ import { db } from '$/lib/instant-db/db';
 import { TweetItem } from './components/tweet-item';
 
 export const TweetList = () => {
+  const { user } = db.useAuth();
   const query = {
     tweets: {
       $: {
+        where: {
+          authorId: user?.id,
+        },
         limit: 10,
         // Similar to limit, order is limited to top-level namespaces right now
         order: {

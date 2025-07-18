@@ -10,15 +10,31 @@ const schema = i.schema({
       content: i.string(),
       authorId: i.string(),
     }),
-    author: i.entity({
+    authors: i.entity({
       id: i.string(),
       name: i.string(),
       username: i.string(),
     }),
+    $users: i.entity({
+      email: i.string().unique().indexed(),
+      name: i.string(),
+      username: i.string(),
+    }),
+  },
+  links: {
+    // `$users` is in the reverse direction for all these links!
+    tweetAuthor: {
+      forward: { on: 'tweets', has: 'one', label: 'author' },
+      reverse: { on: '$users', has: 'many', label: 'tweets' },
+    },
+    userAuthors: {
+      forward: { on: 'authors', has: 'one', label: 'user' },
+      reverse: { on: '$users', has: 'one', label: 'authors' },
+    },
   },
 });
 
 export type Tweet = InstaQLEntity<typeof schema, 'tweets'>;
-export type Author = InstaQLEntity<typeof schema, 'author'>;
+export type Author = InstaQLEntity<typeof schema, 'authors'>;
 
 export const db = init({ appId: APP_ID, schema });
